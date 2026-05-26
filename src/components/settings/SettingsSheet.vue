@@ -69,11 +69,23 @@
           />
         </div>
       </div>
+
+      <!-- Update -->
+      <div class="sheet-section">
+        <div class="sheet-label">Aplikasi</div>
+        <button class="update-check-btn" :class="{ checking: isChecking }" @click="checkUpdate">
+          <span class="update-check-icon">{{ updateIcon }}</span>
+          <span>{{ updateLabel }}</span>
+        </button>
+      </div>
+
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
+import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { useTheme } from '../../composables/useTheme'
 import { useSettings } from '../../composables/useSettings'
 
@@ -92,6 +104,52 @@ const swatches = [
   { id: 'rose',    color: '#FFF1F2', value: '#FFF1F2'  },
   { id: 'slate',   color: '#1E293B', value: '#1E293B'  },
 ]
+
+// Update logic
+const { needRefresh, updateServiceWorker } = useRegisterSW()
+const isChecking = ref(false)
+const status = ref('idle') // idle | checking | latest | found
+
+const updateIcon = computed(() => {
+  if (status.value === 'checking') return '⏳'
+  if (status.value === 'latest')   return '✓'
+  if (status.value === 'found')    return '✨'
+  return '↻'
+})
+
+const updateLabel = computed(() => {
+  if (status.value === 'checking') return 'Memeriksa...'
+  if (status.value === 'latest')   return 'Aplikasi sudah terbaru'
+  if (status.value === 'found')    return 'Update tersedia — Perbarui'
+  return 'Cek Pembaruan'
+})
+
+async function checkUpdate() {
+  if (isChecking.value) return
+
+  // Kalau sudah ada update, langsung install
+  if (needRefresh.value) {
+    updateServiceWorker(true)
+    return
+  }
+
+  isChecking.value = true
+  status.value = 'checking'
+
+  try {
+    const reg = await navigator.serviceWorker.getRegistration()
+    await reg?.update()
+    // Tunggu sebentar agar SW sempat detect
+    await new Promise(r => setTimeout(r, 1500))
+    status.value = needRefresh.value ? 'found' : 'latest'
+  } catch {
+    status.value = 'latest'
+  } finally {
+    isChecking.value = false
+    // Reset label setelah 3 detik
+    setTimeout(() => { if (status.value !== 'found') status.value = 'idle' }, 3000)
+  }
+}
 </script>
 
 <style scoped>
@@ -106,4 +164,28 @@ const swatches = [
   margin-bottom: 10px;
 }
 .font-opt-preview { font-size: 18px; color: var(--text-muted); }
+
+.update-check-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--r-md);
+  font-family: var(--ui-font);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.update-check-btn:active { opacity: 0.7; }
+.update-check-btn.checking { opacity: 0.6; cursor: default; }
+
+.update-check-icon {
+  font-size: 15px;
+  line-height: 1;
+}
 </style>
