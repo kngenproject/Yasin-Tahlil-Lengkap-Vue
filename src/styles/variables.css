@@ -1,0 +1,83 @@
+:root {
+  /* Greens */
+  --g-900: #081C0F;
+  --g-800: #0F2E1B;
+  --g-700: #1B4332;
+  --g-600: #2D6A4F;
+  --g-500: #40916C;
+  --g-400: #52B788;
+  --g-200: #B7E4C7;
+  --g-100: #D8F3DC;
+  --g-50:  #F0FBF3;
+
+  --gold:        #C9A84C;
+  --gold-light:  #E5C76A;
+  --gold-pale:   #FDF3D9;
+  --gold-muted:  #8A6D2C;
+
+  --cream:       #FEFDF8;
+  --paper:       #F7F4EC;
+  --warm-100:    #EDE8DB;
+  --warm-200:    #D9D0BC;
+  --text-primary:   #1A1A1A;
+  --text-secondary: #4A5568;
+  --text-muted:     #8A9099;
+  --white:          #FFFFFF;
+
+  --surface:        #EAE6DC;
+  --surface-card:   #F5F1E8;
+  --surface-alt:    #DDD8CC;
+  --border:         rgba(0,0,0,0.10);
+  --border-mid:     rgba(0,0,0,0.16);
+  --shadow-sm:      0 1px 4px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.07);
+  --shadow-md:      0 4px 16px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.08);
+  --shadow-lg:      0 12px 40px rgba(0,0,0,0.18);
+
+  --r-sm:   8px;
+  --r-md:   14px;
+  --r-lg:   20px;
+  --r-xl:   28px;
+  --r-full: 999px;
+
+  --arabic-font: 'Scheherazade New', serif;
+  --arabic-size: 26px;
+  --arabic-line: 2.15;
+  --arabic-weight: 400;
+
+  --ui-font: 'Plus Jakarta Sans', sans-serif;
+
+  --navbar-h: 68px;
+  --safe-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+[data-theme="dark"] {
+  --g-900: #D8F3DC;
+  --g-800: #B7E4C7;
+  --g-700: #74C69D;
+  --g-600: #52B788;
+  --g-500: #2D6A4F;
+  --g-400: #1B4332;
+  --g-200: #0F2E1B;
+  --g-100: #081C0F;
+  --g-50:  #060F08;
+
+  --cream:          #0B1710;
+  --paper:          #0F1E13;
+  --warm-100:       #162219;
+  --warm-200:       #1F2E23;
+  --text-primary:   #EEF4EE;
+  --text-secondary: #9DB8A3;
+  --text-muted:     #5C7A63;
+  --white:          #0E1D12;
+
+  --surface:        #0B1710;
+  --surface-card:   #0E1D12;
+  --surface-alt:    #0F1E13;
+  --border:         rgba(255,255,255,0.06);
+  --border-mid:     rgba(255,255,255,0.1);
+  --shadow-sm:      0 1px 4px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md:      0 4px 16px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4);
+  --shadow-lg:      0 12px 40px rgba(0,0,0,0.8);
+
+  --gold-pale:   #1C1708;
+}

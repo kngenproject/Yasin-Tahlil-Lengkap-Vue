@@ -1,0 +1,162 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+}
+
+body {
+  background: var(--surface);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+  direction: rtl;
+  transition: background 0.35s ease, color 0.35s ease;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Status bar spacer */
+.status-spacer {
+  height: env(safe-area-inset-top, 0px);
+  background: var(--g-700);
+}
+
+.app-body {
+  padding: 16px 14px calc(var(--navbar-h) + var(--safe-bottom) + 16px);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Arabic text */
+.arabic {
+  font-family: var(--arabic-font);
+  font-size: var(--arabic-size);
+  font-weight: var(--arabic-weight);
+  line-height: var(--arabic-line);
+  color: var(--text-primary);
+  direction: rtl;
+  text-align: right;
+  transition: font-size 0.2s, font-family 0.25s, color 0.3s, font-weight 0.2s;
+}
+
+.arabic.sm  { font-size: calc(var(--arabic-size) - 2px); }
+.arabic.lg  { font-size: calc(var(--arabic-size) + 2px); }
+.arabic.xl  { font-size: calc(var(--arabic-size) + 5px); }
+.arabic.center { text-align: center; }
+
+.basmalah {
+  font-family: var(--arabic-font);
+  font-size: calc(var(--arabic-size) + 1px);
+  font-weight: var(--arabic-weight);
+  color: var(--g-600);
+  text-align: center;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed rgba(46,125,82,0.2);
+}
+
+[data-theme="dark"] .basmalah {
+  color: var(--gold);
+}
+
+.ornament {
+  text-align: center;
+  color: var(--gold);
+  font-size: 13px;
+  margin: 16px 0 12px;
+  opacity: 0.55;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  direction: ltr;
+}
+
+.ornament::before,
+.ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3));
+}
+
+.ornament::after {
+  background: linear-gradient(270deg, transparent, rgba(201,168,76,0.3));
+}
+
+.rep {
+  display: inline-flex;
+  align-items: center;
+  background: var(--g-100);
+  color: var(--g-600);
+  font-family: 'Scheherazade New', serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 2px 12px;
+  border-radius: var(--r-full);
+  vertical-align: middle;
+  border: 1px solid rgba(46,125,82,0.18);
+  margin-inline-start: 6px;
+}
+
+[data-theme="dark"] .rep {
+  background: rgba(52,211,153,0.1);
+  color: var(--gold);
+  border-color: rgba(201,168,76,0.2);
+}
+
+.fatiha-pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--gold);
+  color: #fff;
+  font-family: 'Scheherazade New', serif;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 5px 20px;
+  border-radius: var(--r-full);
+  box-shadow: 0 3px 10px rgba(201,168,76,0.35);
+}
+
+.page-label {
+  font-family: var(--ui-font);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  direction: ltr;
+  text-align: center;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.page-label::before,
+.page-label::after {
+  content: '';
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-mid));
+}
+
+.page-label::after {
+  background: linear-gradient(270deg, transparent, var(--border-mid));
+}
