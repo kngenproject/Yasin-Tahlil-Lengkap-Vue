@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/Yasin-Tahlil-Lengkap-Vue/sw.js', { scope: '/Yasin-Tahlil-Lengkap-Vue/' })})}
